@@ -1,8 +1,8 @@
-const Router = require('express')
+const { Router } = require('express')
 const Team = require('./model')
 
-const router = new Router()
-router.get(
+const teamRouter = new Router()
+teamRouter.get(
   '/team',
   (request, response, next) => {
     Team.findAll()
@@ -11,4 +11,10 @@ router.get(
   }
 )
 
-module.exports = router
+teamRouter.post('/team', (request, response, next) => {
+  Team.create(request.body)
+  .then((newlyCreatedTeam) => response.send(newlyCreatedTeam))
+  .catch(next)
+})
+
+module.exports = teamRouter
