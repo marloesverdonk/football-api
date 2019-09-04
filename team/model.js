@@ -10,3 +10,5 @@ const Team = db.define(
     }
   }
 )
+
+module.exports = Team
