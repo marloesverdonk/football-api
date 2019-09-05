@@ -17,4 +17,13 @@ teamRouter.post('/team', (request, response, next) => {
   .catch(next)
 })
 
+teamRouter.get(
+  '/team/:id',
+  (request, response, next) => {
+    Team.findByPk(request.params.id)
+    .then((teamInstance) => response.send(teamInstance))
+    .catch(next)
+  }
+)
+
 module.exports = teamRouter
